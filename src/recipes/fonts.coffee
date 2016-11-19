@@ -4,7 +4,7 @@ module.exports =
   attach: ->
     @register
       name:        'fonts'
-      ext:         ['eot', 'svg', 'ttf', 'woff', 'css']
+      ext:         ['eot', 'svg', 'ttf', 'woff', 'woff2', 'css']
       type:        'data'
       doc:         false
       test:        true

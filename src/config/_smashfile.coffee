@@ -85,6 +85,8 @@ module.exports =
     exclude:       []
     includeIndex:  true
     includeVendor: true
+    absolutePath: false
+    addAssetPrefix: null
 
     styles:
       out: 'app-styles.min.css'

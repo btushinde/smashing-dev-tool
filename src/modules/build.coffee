@@ -135,7 +135,8 @@ module.exports = (Smasher) ->
       .pipe $.inject appFiles,
         name:         'app'
         ignorePath:   dir.build
-        addRootSlash: false
+        addRootSlash: project.build.absolutePath
+        addPrefix:    project.build.addAssetPrefix
       .pipe $.if args.cat, $.cat()
       .pipe $.jade compileDebug:true
       .on('error', (err) -> logger.error err.message)
