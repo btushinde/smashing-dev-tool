@@ -122,7 +122,7 @@ module.exports = (Smasher) ->
         .pipe $.inject appFiles,
           name:         'app'
           ignorePath:   dir.compile
-          addRootSlash: false
+          addRootSlash: true
         .pipe $.inject vendorFiles,
           name:         'vendor'
           ignorePath:   dir.client
