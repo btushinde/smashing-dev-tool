@@ -1,6 +1,8 @@
 autoprefixer = require('autoprefixer')
 pxtorem = require('postcss-pxtorem')
 lost = require('lost')
+scsslintReporter = require('./scsslint-reporter')
+sh = require('shelljs');
 
 processors = [
   autoprefixer()
@@ -22,19 +24,31 @@ module.exports =
       lint:   false
       reload: false
       compileFn: (stream) ->
-        {files, dest, $, logging, watching, caching, banner, plumbing, stopPlumbing, onError} = self.helpers
+        {files, dest, $, logging, watching, caching, banner, plumbing, stopPlumbing, onError, rootPath} = self.helpers
         {logger, notify, execute, merge, args} = self.util
+        {env, dir} = self.project
+
+        # Allow the use of a local scsslint.yml file
+        configPath = if sh.test('-f', "#{env.cwd}/scsslint.yml")
+          "#{env.cwd}/scsslint.yml"
+        else
+          "#{rootPath}/src/config/lint/scsslint.yml"
+
         stream
           .pipe $.sourcemaps.init()
           # .pipe caching 'scss'
           .pipe logging()
 
           # Lint
-          # .pipe $.scssLint()
+          .pipe $.scssLint(
+            config: configPath
+            customReport: scsslintReporter()
+          )
 
           # Compile
           .pipe $.sass()
+          .on('error', onError)
           .pipe $.postcss(processors)
-          .on('error', (err) -> logger.error err.message)
+
 
           .pipe $.sourcemaps.write './maps'
