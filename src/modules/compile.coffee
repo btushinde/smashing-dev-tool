@@ -192,7 +192,7 @@ module.exports = (Smasher) ->
       # logLevel:     'debug'
       notify:         false
       port:           8080
-      open: if args.mute then false else true
+      open: if args.open then true else false
 
   # Remove previous compilation
   Smasher.task 'compile:clean', (done) ->

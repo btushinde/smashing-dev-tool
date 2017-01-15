@@ -24,6 +24,10 @@
     {
       "option": "-m, --mute",
       "description": "hide all logs and notifications"
+    },
+    {
+      "option": "-o, --open",
+      "description": "automatically open a browser window when in 'serve' mode"
     }
   ],
   "bin": {

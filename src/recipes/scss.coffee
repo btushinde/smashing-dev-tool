@@ -40,15 +40,14 @@ module.exports =
           .pipe logging()
 
           # Lint
-          .pipe $.scssLint(
-            config: configPath
-            customReport: scsslintReporter()
-          )
+          # .pipe $.scssLint(
+          #   config: configPath
+          #   customReport: scsslintReporter()
+          # )
 
           # Compile
           .pipe $.sass()
           .on('error', onError)
           .pipe $.postcss(processors)
-
 
           .pipe $.sourcemaps.write './maps'
