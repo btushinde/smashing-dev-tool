@@ -62,6 +62,7 @@ module.exports =
     css2js:      true
     skipPlugins: [ ]
     exclude:     [ ]
+    addRootSlash: true
 
     styles:      { }
     views:       { }
@@ -87,6 +88,7 @@ module.exports =
     includeVendor: true
     absolutePath: false
     addAssetPrefix: null
+    addRootSlash: true
 
     styles:
       out: 'app-styles.min.css'

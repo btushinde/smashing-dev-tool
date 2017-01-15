@@ -122,11 +122,11 @@ module.exports = (Smasher) ->
         .pipe $.inject appFiles,
           name:         'app'
           ignorePath:   dir.compile
-          addRootSlash: true
+          addRootSlash: project.compile.addRootSlash or true
         .pipe $.inject vendorFiles,
           name:         'vendor'
           ignorePath:   dir.client
-          addRootSlash: false
+          addRootSlash: project.compile.addRootSlash or true
         .pipe $.if args.cat, $.cat()
         .pipe $.jade pretty:true, compileDebug:true
         .pipe $.order(project.compile.views.order)
