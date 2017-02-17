@@ -139,6 +139,7 @@ module.exports = (Smasher) ->
         addPrefix:    project.build.addAssetPrefix
       .pipe $.if args.cat, $.cat()
       .pipe $.jade compileDebug:true
+      .pipe $.minifyInline()
       .on('error', (err) -> logger.error err.message)
       .pipe gulp.dest target
 
